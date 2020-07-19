@@ -94,11 +94,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{ paddingTop: 5 }}>
+    <div className="App" style={{ paddingTop: 10 }}>
       {
         people &&
         <Container maxWidth="sm">
-          <GridList spacing={20} cellHeight={240} cols={2} >
+          <GridList spacing={20} cellHeight={225} cols={2} >
             {people.map((person: any) => (
               <GridListTile key={Math.random()} cols={1}>
                 <Card variant="outlined">
