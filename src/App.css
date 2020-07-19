@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+@media (prefers-color-scheme: dark) {
+  html {
+    background: black;
+    color: white;
+  }
+  .MuiCardContent-root{
+    background: #212121;
+  }
+  .MuiCardContent-root > h2{
+    color: white
+  }
+  .MuiTypography-colorTextSecondary{
+    color: white !important;
+  }
+  .MuiSvgIcon-root{
+    color: white;
+  } 
+}

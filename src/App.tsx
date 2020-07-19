@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import { db } from './firebase';
 
@@ -19,14 +19,18 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import Typography from '@material-ui/core/Typography';
 
-// const useStyles = makeStyles({
-//   media: {
-//     height: 140,
-//   }
-// });
+import Fab from '@material-ui/core/Fab';
+
+const useStyles = makeStyles({
+  fab: {
+    position: "fixed",
+    bottom: 2 * 5,
+    right: 3 * 5
+  }
+});
 
 function App() {
-  // const classes = useStyles();
+  const classes = useStyles();
   const [people, updatePeople] = useState<any>();
   const [user, updateUser] = useState<any>();
   const [collection, updateCollection] = useState<any>();
@@ -43,6 +47,7 @@ function App() {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
       });
+    updateBusy(busy);
   }
 
   useEffect(() => {
@@ -93,10 +98,10 @@ function App() {
       {
         people &&
         <Container maxWidth="sm">
-          <GridList cellHeight={500} cols={2}>
+          <GridList spacing={20} cellHeight={240} cols={2} >
             {people.map((person: any) => (
               <GridListTile key={Math.random()} cols={1}>
-                <Card>
+                <Card variant="outlined">
                   <CardActionArea>
                     <CardMedia component="img" src="https://source.unsplash.com/330x200/?dog,cat" height="100" title={person.name} />
                     <CardContent>
@@ -113,6 +118,9 @@ function App() {
               </GridListTile>
             ))}
           </GridList>
+          <Fab color="primary" onClick={() => { onUpdate(!busy, collection, user) }} className={classes.fab} >
+            {busy ? <LockIcon /> : <LockOpenIcon />}
+          </Fab>
         </Container>
       }
     </div>
